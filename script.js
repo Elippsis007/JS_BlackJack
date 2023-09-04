@@ -1,5 +1,6 @@
 let firstCard = 6
 let secondCard = 7
+let cards = [firstCard, secondCard] // array - ordered list of items
 let sum = firstCard + secondCard
 let hasBlackJack = false
 let playerAlive = true
@@ -7,9 +8,23 @@ let playerAlive = true
 // this was created to remove the console.log 
 let message = ""
 
-let messageEl = document.getElementById('message-el')
+let messageEl = document.getElementById('message-el');
+let sumEl = document.getElementById('sum-el');
+let cardsEl = document.getElementById('cards-el');
 
 function startGame() {
+    renderGame()
+}
+
+function renderGame() {
+    cardsEl.textContent = "Cards: "
+
+    for (let i = 0; i < cards.length; i++) {
+        cardsEl.textContent += cards[i] + " "
+    }
+
+
+    sumEl.textContent = "Sum: " + sum
     // if sum (of two cards) is less than 21 then return message
     if (sum <= 20) {
         message = "Do you want to draw another card?"
@@ -22,5 +37,13 @@ function startGame() {
             playerAlive = false
     }
     messageEl.textContent = message
+    }
+
+function newCard() {
+    console.log("Drawing out a new card")
+    let card = 4
+    sum += card
+    cards.push(card)
+    renderGame()
 }
 
